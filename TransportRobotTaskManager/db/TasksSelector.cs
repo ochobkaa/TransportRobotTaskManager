@@ -15,7 +15,7 @@ namespace TransportRobotTaskManager.Db
             _dbContext = dbContext;
         }
 
-        private IEnumerable<RobotTaskEntity> SelectTasksByPriority(IEnumerable<RobotTaskEntity> tasks)
+        private IQueryable<RobotTaskEntity> SelectTasksByPriority(IQueryable<RobotTaskEntity> tasks)
         {
             var selectedTasks = from task in tasks
                                 where task.Priority == tasks.Max(task => task.Priority)
@@ -24,7 +24,7 @@ namespace TransportRobotTaskManager.Db
             return selectedTasks;
         }
 
-        private IEnumerable<RobotTaskEntity> SelectTasksByPayload(IEnumerable<RobotTaskEntity> tasks, 
+        private IQueryable<RobotTaskEntity> SelectTasksByPayload(IQueryable<RobotTaskEntity> tasks, 
             double maxMass, double maxSizeX, double maxSizeY, double maxSizeZ)
         {
             var selectedTasks = from task in tasks
